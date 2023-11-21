@@ -1,0 +1,2 @@
+--insert into aluno (name, telefone, email) values ('Gustavo', '99650-8838', 'guga@gmail.com');
+--insert into aluno (name, telefone, email) values ('Andrea', '99650-8799', 'andrea@gmail.com');
