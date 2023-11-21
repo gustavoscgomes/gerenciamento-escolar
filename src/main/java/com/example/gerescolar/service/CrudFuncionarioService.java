@@ -23,7 +23,7 @@ public class CrudFuncionarioService {
     }
 
     public void menu(Scanner scanner) {
-        Boolean isTrue = true;
+        boolean isTrue = true;
 
         while (isTrue) {
             System.out.println("\nQual ação você quer executar?");
@@ -38,27 +38,13 @@ public class CrudFuncionarioService {
             int opcao = scanner.nextInt();
 
             switch (opcao) {
-                case 1:
-                    this.cadastrar(scanner);
-                    break;
-                case 2:
-                    this.listagemGeral();
-                    break;
-//                case 3:
-//                    this.listagemPorNome(scanner);
-//                    break;
-                case 4:
-                    this.listagemPorCargo(scanner);
-                    break;
-                case 5:
-                    this.listagemPorMatricula(scanner);
-                    break;
-                case 6:
-                    this.atualizar(scanner);
-                    break;
-                default:
-                    isTrue = false;
-                    break;
+                case 1 -> this.cadastrar(scanner);
+                case 2 -> this.listagemGeral();
+                case 3 -> this.listagemPorNome(scanner);
+                case 4 -> this.listagemPorCargo(scanner);
+                case 5 -> this.listagemPorMatricula(scanner);
+                case 6 -> this.atualizar(scanner);
+                default -> isTrue = false;
             }
         }
         System.out.println();
@@ -131,17 +117,17 @@ public class CrudFuncionarioService {
         }
     }
 
-//    private void listagemPorNome(Scanner scanner) {
-//        System.out.print("Digite o nome do funcionario a ser consultado: ");
-//        String name = scanner.next();
-//
-//        Iterable<Funcionario> funcionarios = this.funcionarioRepository.findByName(name);
-//
-//        for (Funcionario funcionario : funcionarios) {
-//            System.out.println(funcionario);
-//        }
-//    }
-//
+    private void listagemPorNome(Scanner scanner) {
+        System.out.print("Digite o nome do funcionario a ser consultado: ");
+        String name = scanner.next();
+
+        Iterable<Funcionario> funcionarios = this.funcionarioRepository.findByName(name);
+
+        for (Funcionario funcionario : funcionarios) {
+            System.out.println(funcionario);
+        }
+    }
+
     private void listagemPorCargo(Scanner scanner) {
         Cargo cargoEscolhido = null;
 

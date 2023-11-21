@@ -20,7 +20,7 @@ public class CrudAlunoService {
     }
 
     public void menu(Scanner scanner) {
-        Boolean isTrue = true;
+        boolean isTrue = true;
 
         while (isTrue) {
             System.out.println("\nQual ação você quer executar?");
@@ -34,24 +34,12 @@ public class CrudAlunoService {
             int opcao = scanner.nextInt();
 
             switch (opcao) {
-                case 1:
-                    this.cadastrar(scanner);
-                    break;
-                case 2:
-                    this.listagemGeral();
-                    break;
-                case 3:
-                    this.listagemPorNome(scanner);
-                    break;
-                case 4:
-                    this.listagemPorMatricula(scanner);
-                    break;
-                case 5:
-                    this.atualizar(scanner);
-                    break;
-                default:
-                    isTrue = false;
-                    break;
+                case 1 -> this.cadastrar(scanner);
+                case 2 -> this.listagemGeral();
+                case 3 -> this.listagemPorNome(scanner);
+                case 4 -> this.listagemPorMatricula(scanner);
+                case 5 -> this.atualizar(scanner);
+                default -> isTrue = false;
             }
         }
         System.out.println();
