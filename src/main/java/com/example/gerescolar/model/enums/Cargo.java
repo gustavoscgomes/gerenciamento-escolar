@@ -4,7 +4,8 @@ public enum Cargo {
     CORDENADOR,
     DIRETOR,
     ESTAGIARIO,
-    ATENDENTE
+    ATENDENTE,
+    PROFESSOR
 
 
 //    public static Cargo valueOf(int code) {
