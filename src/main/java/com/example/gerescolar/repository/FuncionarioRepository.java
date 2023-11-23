@@ -10,10 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
-
     public List<Funcionario> findByCargo(Cargo cargo);
-
-    @Query("SELECT f FROM Funcionario f WHERE f.name = :name ")
     public List<Funcionario> findByName(String name);
 
 }

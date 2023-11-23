@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "professor")
 public class Professor extends Funcionario {
-    
+
     @Enumerated(EnumType.STRING)
     private Disciplina disciplina;
 

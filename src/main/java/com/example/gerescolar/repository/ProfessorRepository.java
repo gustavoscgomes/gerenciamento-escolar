@@ -9,7 +9,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface ProfessorRepository extends JpaRepository<Professor, Long> {
-
-//    @Query("SELECT p FROM Professor WHERE p.name = :name ")
-//    public List<Professor> findByName(String name);
+    public List<Professor> findByName(String name);
 }

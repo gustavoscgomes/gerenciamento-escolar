@@ -9,7 +9,5 @@ import java.util.List;
 
 @Repository
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
-
-    @Query("SELECT a FROM Aluno a WHERE a.name = :name ")
     public List<Aluno> findByName(String name);
 }

@@ -39,7 +39,7 @@ public class CrudProfessorService {
             switch (opcao) {
                 case 1 -> this.cadastrar(scanner);
                 case 2 -> this.listagemGeral();
-//                case 3 -> this.listagemPorNome(scanner);
+                case 3 -> this.listagemPorNome(scanner);
                 case 4 -> this.listagemPorMatricula(scanner);
                 case 5 -> this.atualizar(scanner);
                 default -> isTrue = false;
@@ -101,16 +101,16 @@ public class CrudProfessorService {
         }
     }
 
-//    private void listagemPorNome(Scanner scanner) {
-//        System.out.print("Digite o nome do professor a ser consultado: ");
-//        String name = scanner.next();
-//
-//        Iterable<Professor> professores = this.professorRepository.findByName(name);
-//
-//        for (Professor professor : professores) {
-//            System.out.println(professor);
-//        }
-//    }
+    private void listagemPorNome(Scanner scanner) {
+        System.out.print("Digite o nome do professor a ser consultado: ");
+        String name = scanner.next();
+
+        Iterable<Professor> professores = this.professorRepository.findByName(name);
+
+        for (Professor professor : professores) {
+            System.out.println(professor);
+        }
+    }
 
     private void listagemPorMatricula (Scanner scanner){
         System.out.print("Digite a matricula: ");
