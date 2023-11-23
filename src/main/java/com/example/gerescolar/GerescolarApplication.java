@@ -2,6 +2,7 @@ package com.example.gerescolar;
 
 import com.example.gerescolar.service.CrudAlunoService;
 import com.example.gerescolar.service.CrudFuncionarioService;
+import com.example.gerescolar.service.CrudProfessorService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,9 +15,13 @@ public class GerescolarApplication implements CommandLineRunner {
 
 	private CrudFuncionarioService funcionarioService;
 
-	public GerescolarApplication(CrudAlunoService alunoService, CrudFuncionarioService funcionarioService) {
+	private CrudProfessorService professorService;
+
+	public GerescolarApplication(CrudAlunoService alunoService, CrudFuncionarioService funcionarioService,
+								 CrudProfessorService professorService) {
 		this.alunoService = alunoService;
 		this.funcionarioService = funcionarioService;
+		this.professorService = professorService;
 	}
 
 	public static void main(String[] args) {
@@ -33,18 +38,14 @@ public class GerescolarApplication implements CommandLineRunner {
 			System.out.println("0 - Sair");
 			System.out.println("1 - Aluno");
 			System.out.println("2 - Funcionario");
+			System.out.println("3 - Professor");
 			int opcao = scanner.nextInt();
 
 			switch (opcao) {
-				case 1:
-					this.alunoService.menu(scanner);
-					break;
-				case 2:
-					this.funcionarioService.menu(scanner);
-					break;
-				default:
-					isTrue = false;
-					break;
+				case 1 -> this.alunoService.menu(scanner);
+				case 2 -> this.funcionarioService.menu(scanner);
+				case 3 -> this.professorService.menu(scanner);
+				default -> isTrue = false;
 			}
 		}
 	}

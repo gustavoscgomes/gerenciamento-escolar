@@ -138,7 +138,7 @@ public class CrudFuncionarioService {
         System.out.print("Digite o número correspondente ao cargo: ");
         int escolhaCargo = scanner.nextInt();
 
-        //checa se o indice digitado corresponde a algum cargo
+        //checa se o indice digitado corresponde a algum cargo existente
         if (escolhaCargo >= 0 && escolhaCargo < Cargo.values().length) {
             cargoEscolhido = Cargo.values()[escolhaCargo];
         }
@@ -155,7 +155,12 @@ public class CrudFuncionarioService {
 
             Optional<Funcionario> optional = this.funcionarioRepository.findById(matricula);
 
-            System.out.println(optional);
+            if (optional.isPresent()) {
+                System.out.println(optional);
+            }
+            else {
+                System.out.println("A matricula do funcionario informado: " + matricula + " é inválida\n");
+            }
 
         }
 

@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
 @Entity
-public class Pessoa {
+public abstract class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer matricula;
