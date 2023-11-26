@@ -6,7 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "professor")
 public class Professor extends Funcionario {
@@ -14,17 +18,13 @@ public class Professor extends Funcionario {
     @Enumerated(EnumType.STRING)
     private Disciplina disciplina;
 
-    public Disciplina getDisciplina() {
-        return disciplina;
-    }
-
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    public Professor() {
+        this.setCargo(Cargo.PROFESSOR);
     }
 
     @Override
     public String toString() {
         return super.toString() +
-                " disciplina= " + disciplina;
+                "Disciplina= " + disciplina;
     }
 }

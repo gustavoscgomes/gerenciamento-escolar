@@ -3,6 +3,7 @@ package com.example.gerescolar.service;
 import com.example.gerescolar.model.entity.Aluno;
 import com.example.gerescolar.model.entity.Endereco;
 import com.example.gerescolar.repository.AlunoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -12,8 +13,10 @@ import java.util.Scanner;
 
 @Service
 public class CrudAlunoService {
-    private final AlunoRepository alunoRepository;
+    @Autowired
+    private AlunoRepository alunoRepository;
     private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
 
     public CrudAlunoService(AlunoRepository alunoRepository) {
         this.alunoRepository = alunoRepository;

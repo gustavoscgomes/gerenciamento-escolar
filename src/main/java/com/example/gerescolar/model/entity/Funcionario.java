@@ -2,37 +2,51 @@ package com.example.gerescolar.model.entity;
 
 import com.example.gerescolar.model.enums.Cargo;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
-
+@Getter
+@Setter
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "funcionario")
-public class Funcionario extends Pessoa{
+public class Funcionario {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @EqualsAndHashCode.Include
+    private Integer matricula;
+
+    private String name;
+
+    @Column(name = "data_de_nascimentos")
+    private LocalDate dataDeNascimento;
+
+    @Embedded
+    private Endereco endereco;
+
+    private String telefone;
+
+    private String email;
+
     @Enumerated(EnumType.STRING)
     private Cargo cargo;
+
     @Column(name = "data_de_contratacao")
     private LocalDate dataDeContratacao;
 
-    public Cargo getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(Cargo cargo) {
-        this.cargo = cargo;
-    }
-
-    public LocalDate getDataDeContratacao() {
-        return dataDeContratacao;
-    }
-
-    public void setDataDeContratacao(LocalDate dataDeContratacao) {
-        this.dataDeContratacao = dataDeContratacao;
-    }
-
     @Override
     public String toString() {
-        return super.toString()+
-                ", cargo= " + cargo +
-                ", dataDeContratacao= " + dataDeContratacao;
+        return "Matricula= " + matricula +
+                ", Name= " + name +
+                ", Data De Nascimento= " + dataDeNascimento +
+                ", Endereco= " + endereco +
+                ", Telefone= " + telefone +
+                ", Email= " + email +
+                ", Cargo= " + cargo +
+                ", Data De Contratacao= " + dataDeContratacao;
     }
 }
