@@ -1,25 +1,22 @@
-package com.example.gerescolar.service;
+package com.example.gerescolar.menu;
 
 import com.example.gerescolar.model.entity.Aluno;
 import com.example.gerescolar.model.entity.Endereco;
-import com.example.gerescolar.repository.AlunoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.example.gerescolar.service.AlunoService;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Optional;
 import java.util.Scanner;
+@Component
+public class MenuAluno {
 
-@Service
-public class CrudAlunoService {
-    @Autowired
-    private AlunoRepository alunoRepository;
     private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+    private final AlunoService service;
 
-    public CrudAlunoService(AlunoRepository alunoRepository) {
-        this.alunoRepository = alunoRepository;
+    public MenuAluno(AlunoService service) {
+        this.service = service;
     }
 
     public void menu(Scanner scanner) {
@@ -33,6 +30,7 @@ public class CrudAlunoService {
             System.out.println("3 - Listagem por Nome");
             System.out.println("4 - Listagem por Matricula");
             System.out.println("5 - Atualizar");
+            System.out.println("6 - Delete");
 
             int opcao = scanner.nextInt();
 
@@ -41,7 +39,8 @@ public class CrudAlunoService {
                 case 2 -> this.listagemGeral();
                 case 3 -> this.listagemPorNome(scanner);
                 case 4 -> this.listagemPorMatricula(scanner);
-                case 5 -> this.atualizar(scanner);
+//                case 5 -> this.atualizar(scanner);
+                case 6 -> this.delete(scanner);
                 default -> isTrue = false;
             }
         }
@@ -55,8 +54,8 @@ public class CrudAlunoService {
         System.out.print("Logradouro: ");
         endereco.setLogradouro(scanner.next());
 
-        System.out.print("Complemento: ");
-        endereco.setComplemento(scanner.next());
+        System.out.print("Numero: : ");
+        endereco.setNumero(scanner.next());
 
         System.out.print("Bairro: ");
         endereco.setBairro(scanner.next());
@@ -80,12 +79,12 @@ public class CrudAlunoService {
 
         aluno.setEndereco(endereco);
 
-        this.alunoRepository.save(aluno);
+        this.service.alunoSave(aluno);
         System.out.println("Aluno salvo no Banco!!!\n");
     }
 
     private void listagemGeral() {
-        Iterable<Aluno> alunos = this.alunoRepository.findAll();
+        Iterable<Aluno> alunos = this.service.getAlunos();
 
         for (Aluno aluno : alunos) {
             System.out.println(aluno);
@@ -96,7 +95,7 @@ public class CrudAlunoService {
         System.out.print("Digite o nome do aluno a ser consultado: ");
         String name = scanner.next();
 
-        Iterable<Aluno> alunos = this.alunoRepository.findByName(name);
+        Iterable<Aluno> alunos = this.service.getAlunoByName(name);
 
         for (Aluno aluno : alunos) {
             System.out.println(aluno);
@@ -107,31 +106,45 @@ public class CrudAlunoService {
         System.out.print("Digite a matricula do aluno: ");
         Long matricula = scanner.nextLong();
 
-        Optional<Aluno> optional = this.alunoRepository.findById(matricula);
+        Aluno aluno = this.service.getAlunoById(matricula);
 
-        System.out.println(optional);
+        System.out.println(aluno);
 
     }
-    private void atualizar(Scanner scanner) {
-        System.out.print("Digite a matricula do aluno a ser atualizado: ");
+//    private void atualizar(Scanner scanner) {
+//        System.out.print("Digite a matricula do aluno a ser atualizado: ");
+//        Long matricula = scanner.nextLong();
+//
+//        Optional<Aluno> optional = this.alunoRepository.findById(matricula);
+//
+//        if (optional.isPresent()) {
+//            Aluno aluno = optional.get();
+//
+//            System.out.print("Digite o nome: ");
+//            aluno.setName(scanner.next());
+//            System.out.print("Digite o telefone: ");
+//            aluno.setTelefone(scanner.next());
+//            System.out.print("Digite o email: ");
+//            aluno.setEmail(scanner.next());
+//
+//            alunoRepository.save(aluno);
+//        }
+//        else {
+//            System.out.println("A matricula do aluno informado: " + matricula + " é inválida\n");
+//        }
+//    }
+
+    public void delete(Scanner scanner) {
+        System.out.print("Digite a matricula do aluno a ser deletado: ");
         Long matricula = scanner.nextLong();
 
-        Optional<Aluno> optional = this.alunoRepository.findById(matricula);
+        Aluno aluno = this.service.getAlunoById(matricula);
 
-        if (optional.isPresent()) {
-            Aluno aluno = optional.get();
-
-            System.out.print("Digite o nome: ");
-            aluno.setName(scanner.next());
-            System.out.print("Digite o telefone: ");
-            aluno.setTelefone(scanner.next());
-            System.out.print("Digite o email: ");
-            aluno.setEmail(scanner.next());
-
-            alunoRepository.save(aluno);
+        if (aluno != null) {
+            service.deleteAluno(matricula);
         }
         else {
             System.out.println("A matricula do aluno informado: " + matricula + " é inválida\n");
         }
     }
-    }
+}

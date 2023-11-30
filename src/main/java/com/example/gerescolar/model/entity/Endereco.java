@@ -11,8 +11,6 @@ public class Endereco {
 
     private String numero;
 
-    private String complemento;
-
     private String bairro;
 
     private String cidade;
@@ -43,13 +41,6 @@ public class Endereco {
         this.numero = numero;
     }
 
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
 
     public String getBairro() {
         return bairro;
@@ -81,7 +72,6 @@ public class Endereco {
                 "cep= " + cep +
                 ", logradouro= " + logradouro +
                 ", numero= " + numero +
-                ", complemento= " + complemento +
                 ", bairro= " + bairro +
                 ", cidade= " + cidade +
                 ", estado= " + estado +

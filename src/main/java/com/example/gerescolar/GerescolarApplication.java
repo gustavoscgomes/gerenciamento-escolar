@@ -1,7 +1,7 @@
 package com.example.gerescolar;
 
-import com.example.gerescolar.service.CrudAlunoService;
-import com.example.gerescolar.service.CrudFuncionarioService;
+import com.example.gerescolar.menu.MenuAluno;
+import com.example.gerescolar.menu.MenuFuncionario;
 import com.example.gerescolar.service.CrudProfessorService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,16 +11,15 @@ import java.util.Scanner;
 
 @SpringBootApplication
 public class GerescolarApplication implements CommandLineRunner {
-	private CrudAlunoService alunoService;
+	private final MenuAluno menuAluno;
 
-	private CrudFuncionarioService funcionarioService;
+	private final MenuFuncionario menuFuncionario;
 
-	private CrudProfessorService professorService;
+	private final CrudProfessorService professorService;
 
-	public GerescolarApplication(CrudAlunoService alunoService, CrudFuncionarioService funcionarioService,
-								 CrudProfessorService professorService) {
-		this.alunoService = alunoService;
-		this.funcionarioService = funcionarioService;
+	public GerescolarApplication(MenuAluno menuAluno, MenuFuncionario menuFuncionario, CrudProfessorService professorService) {
+		this.menuAluno = menuAluno;
+		this.menuFuncionario = menuFuncionario;
 		this.professorService = professorService;
 	}
 
@@ -30,7 +29,7 @@ public class GerescolarApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Boolean isTrue = true;
+		boolean isTrue = true;
 		Scanner scanner = new Scanner(System.in);
 
 		while (isTrue) {
@@ -42,8 +41,8 @@ public class GerescolarApplication implements CommandLineRunner {
 			int opcao = scanner.nextInt();
 
 			switch (opcao) {
-				case 1 -> this.alunoService.menu(scanner);
-				case 2 -> this.funcionarioService.menu(scanner);
+				case 1 -> this.menuAluno.menu(scanner);
+				case 2 -> this.menuFuncionario.menu(scanner);
 				case 3 -> this.professorService.menu(scanner);
 				default -> isTrue = false;
 			}
