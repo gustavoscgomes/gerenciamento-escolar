@@ -32,7 +32,7 @@ public class AlunoController {
     public List<Aluno> findProductByName(@PathVariable String name) {
         return service.getAlunoByName(name);
     }
-    
+
 
     @DeleteMapping("/delete/{id}")
     public String deleteAluno(@PathVariable Long id) {
