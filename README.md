@@ -1,6 +1,6 @@
 # Projeto CRUD com Spring Boot, Spring Data JPA, e PostgreSQL
 
-Este projeto é um exemplo de um aplicativo CRUD (Create, Read, Update, Delete) desenvolvido com Java, Spring Boot, Spring Data JPA e PostgreSQL. O objetivo é fornecer uma implementação prática das operações básicas de um sistema de gerenciamento de alunos, funcionários e professores.
+Este projeto é um exemplo de um aplicativo CRUD (Create, Read, Update, Delete) desenvolvido com Java, Spring Boot, Spring Data JPA e MySql. O objetivo é fornecer uma implementação prática das operações básicas de um sistema de gerenciamento de alunos, funcionários e professores.
 
 ## Funcionalidades
 
