@@ -46,4 +46,21 @@ public class FuncionarioService {
         repository.deleteById(id);
         return "Funcionario removido !! " + id;
     }
+
+    public Funcionario updateFuncionario(Funcionario funcionario) {
+        Funcionario existingFuncionario = repository.findById(funcionario.getMatricula()).orElse(null);
+        existingFuncionario.setName(funcionario.getName());
+        existingFuncionario.setEmail(funcionario.getEmail());
+        existingFuncionario.setTelefone(funcionario.getTelefone());
+        existingFuncionario.setDataDeNascimento(funcionario.getDataDeNascimento());
+        existingFuncionario.setDataDeContratacao(funcionario.getDataDeContratacao());
+        existingFuncionario.setCargo(funcionario.getCargo());
+        existingFuncionario.getEndereco().setCep(funcionario.getEndereco().getCep());
+        existingFuncionario.getEndereco().setLogradouro(funcionario.getEndereco().getLogradouro());
+        existingFuncionario.getEndereco().setNumero(funcionario.getEndereco().getNumero());
+        existingFuncionario.getEndereco().setBairro(funcionario.getEndereco().getBairro());
+        existingFuncionario.getEndereco().setCidade(funcionario.getEndereco().getCidade());
+        existingFuncionario.getEndereco().setEstado(funcionario.getEndereco().getEstado());
+        return repository.save(existingFuncionario);
+    }
 }

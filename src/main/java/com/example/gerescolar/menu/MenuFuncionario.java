@@ -173,28 +173,24 @@ public class MenuFuncionario {
 
         if (funcionario != null) {
 
-            Endereco endereco = new Endereco();
 
             System.out.print("Cep: ");
-            endereco.setCep(scanner.next());
+            funcionario.getEndereco().setCep(scanner.next());
 
             System.out.print("Logradouro: ");
-            endereco.setLogradouro(scanner.next());
+            funcionario.getEndereco().setLogradouro(scanner.next());
 
             System.out.print("Numero: ");
-            endereco.setNumero(scanner.next());
+            funcionario.getEndereco().setNumero(scanner.next());
 
             System.out.print("Bairro: ");
-            endereco.setBairro(scanner.next());
+            funcionario.getEndereco().setBairro(scanner.next());
 
             System.out.print("Cidade: ");
-            endereco.setCidade(scanner.next());
+            funcionario.getEndereco().setCidade(scanner.next());
 
             System.out.print("Estado: ");
-            endereco.setEstado(scanner.next());
-
-
-            funcionario.setEndereco(endereco);
+            funcionario.getEndereco().setEstado(scanner.next());
 
             System.out.print("Digite o nome: ");
             funcionario.setName(scanner.next());

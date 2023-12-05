@@ -5,7 +5,6 @@ import com.example.gerescolar.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -33,5 +32,22 @@ public class AlunoService {
         repository.deleteById(id);
         return "aluno removido !! " + id;
     }
+
+    public Aluno updateAluno(Aluno aluno) {
+        Aluno existingAluno = repository.findById(aluno.getMatricula()).orElse(null);
+        existingAluno.setName(aluno.getName());
+        existingAluno.setEmail(aluno.getEmail());
+        existingAluno.setTelefone(aluno.getTelefone());
+        existingAluno.setDataDeNascimento(aluno.getDataDeNascimento());
+        existingAluno.setDataDeIngresso(aluno.getDataDeIngresso());
+        existingAluno.getEndereco().setCep(aluno.getEndereco().getCep());
+        existingAluno.getEndereco().setLogradouro(aluno.getEndereco().getLogradouro());
+        existingAluno.getEndereco().setNumero(aluno.getEndereco().getNumero());
+        existingAluno.getEndereco().setBairro(aluno.getEndereco().getBairro());
+        existingAluno.getEndereco().setCidade(aluno.getEndereco().getCidade());
+        existingAluno.getEndereco().setEstado(aluno.getEndereco().getEstado());
+        return repository.save(existingAluno);
+    }
+
 
 }

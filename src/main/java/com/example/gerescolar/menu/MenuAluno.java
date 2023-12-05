@@ -39,7 +39,7 @@ public class MenuAluno {
                 case 2 -> this.listagemGeral();
                 case 3 -> this.listagemPorNome(scanner);
                 case 4 -> this.listagemPorMatricula(scanner);
-//                case 5 -> this.atualizar(scanner);
+                case 5 -> this.atualizar(scanner);
                 case 6 -> this.delete(scanner);
                 default -> isTrue = false;
             }
@@ -51,10 +51,13 @@ public class MenuAluno {
     private void cadastrar(Scanner scanner) {
         Endereco endereco = new Endereco();
 
+        System.out.print("Cep: ");
+        endereco.setCep(scanner.next());
+
         System.out.print("Logradouro: ");
         endereco.setLogradouro(scanner.next());
 
-        System.out.print("Numero: : ");
+        System.out.print("Numero: ");
         endereco.setNumero(scanner.next());
 
         System.out.print("Bairro: ");
@@ -72,6 +75,8 @@ public class MenuAluno {
         aluno.setName(scanner.next());
         System.out.print("Digite a data de nascimento: (dd/mm/aaaa): ");
         aluno.setDataDeNascimento(LocalDate.parse(scanner.next(), dtf));
+        System.out.print("Digite a data de ingresso: (dd/mm/aaaa): ");
+        aluno.setDataDeIngresso(LocalDate.parse(scanner.next(), dtf));
         System.out.print("Digite o telefone: ");
         aluno.setTelefone(scanner.next());
         System.out.print("Digite o email: ");
@@ -111,27 +116,93 @@ public class MenuAluno {
         System.out.println(aluno);
 
     }
+    private void atualizar(Scanner scanner) {
+        System.out.print("Digite a matricula do Aluno a ser atualizado: ");
+        Long matricula = scanner.nextLong();
+
+        Aluno aluno = this.service.getAlunoById(matricula);
+
+        if (aluno != null) {
+
+
+            System.out.print("Cep: ");
+            aluno.getEndereco().setCep(scanner.next());
+
+            System.out.print("Logradouro: ");
+            aluno.getEndereco().setLogradouro(scanner.next());
+
+            System.out.print("Numero: ");
+            aluno.getEndereco().setNumero(scanner.next());
+
+            System.out.print("Bairro: ");
+            aluno.getEndereco().setBairro(scanner.next());
+
+            System.out.print("Cidade: ");
+            aluno.getEndereco().setCidade(scanner.next());
+
+            System.out.print("Estado: ");
+            aluno.getEndereco().setEstado(scanner.next());
+
+            System.out.print("Digite o nome: ");
+            aluno.setName(scanner.next());
+
+            System.out.print("Digite a data de nascimento: (dd/mm/aaaa): ");
+            aluno.setDataDeNascimento(LocalDate.parse(scanner.next(), dtf));
+
+
+            System.out.print("Digite o telefone: ");
+            aluno.setTelefone(scanner.next());
+
+            System.out.print("Digite o email: ");
+            aluno.setEmail(scanner.next());
+
+            service.alunoSave(aluno);
+
+        } else {
+            System.out.println("A matricula do aluno informado: " + matricula + " é inválida\n");
+        }
+    }
+
 //    private void atualizar(Scanner scanner) {
-//        System.out.print("Digite a matricula do aluno a ser atualizado: ");
+//        System.out.print("Digite a matricula do Aluno a ser atualizado: ");
 //        Long matricula = scanner.nextLong();
 //
-//        Optional<Aluno> optional = this.alunoRepository.findById(matricula);
+//        Aluno novoAluno = new Aluno();
 //
-//        if (optional.isPresent()) {
-//            Aluno aluno = optional.get();
 //
-//            System.out.print("Digite o nome: ");
-//            aluno.setName(scanner.next());
-//            System.out.print("Digite o telefone: ");
-//            aluno.setTelefone(scanner.next());
-//            System.out.print("Digite o email: ");
-//            aluno.setEmail(scanner.next());
+//        System.out.print("Cep: ");
+//        novoAluno.getEndereco().setCep(scanner.next());
 //
-//            alunoRepository.save(aluno);
-//        }
-//        else {
-//            System.out.println("A matricula do aluno informado: " + matricula + " é inválida\n");
-//        }
+//        System.out.print("Logradouro: ");
+//        novoAluno.getEndereco().setLogradouro(scanner.next());
+//
+//        System.out.print("Numero: ");
+//        novoAluno.getEndereco().setNumero(scanner.next());
+//
+//        System.out.print("Bairro: ");
+//        novoAluno.getEndereco().setBairro(scanner.next());
+//
+//        System.out.print("Cidade: ");
+//        novoAluno.getEndereco().setCidade(scanner.next());
+//
+//        System.out.print("Estado: ");
+//        novoAluno.getEndereco().setEstado(scanner.next());
+//
+//        System.out.print("Digite o nome: ");
+//        novoAluno.setName(scanner.next());
+//
+//        System.out.print("Digite a data de nascimento: (dd/mm/aaaa): ");
+//        novoAluno.setDataDeNascimento(LocalDate.parse(scanner.next(), dtf));
+//
+//
+//        System.out.print("Digite o telefone: ");
+//        novoAluno.setTelefone(scanner.next());
+//
+//        System.out.print("Digite o email: ");
+//        novoAluno.setEmail(scanner.next());
+//
+//        service.updateAluno(matricula, novoAluno);
+//
 //    }
 
     public void delete(Scanner scanner) {

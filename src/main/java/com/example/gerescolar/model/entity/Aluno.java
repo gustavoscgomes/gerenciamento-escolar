@@ -17,7 +17,7 @@ public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @EqualsAndHashCode.Include
-    private Integer matricula;
+    private Long matricula;
 
     private String name;
 
